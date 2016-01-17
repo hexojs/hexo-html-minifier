@@ -12,10 +12,12 @@ $ npm install hexo-html-minifier --save
 
 ``` yaml
 html_minifier:
-  exclude: 
+  exclude:
+  priority:
 ```
 
-- **exclude**: Exclude files
+- `exclude`: Exclude files
+- `priority`: Plugin priority
 
 See <https://github.com/kangax/html-minifier#options-quick-reference>
 
