@@ -1,6 +1,6 @@
 {
   "name": "hexo-html-minifier",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Minify HTML files with HTMLMinifier.",
   "main": "index",
   "scripts": {
@@ -19,11 +19,14 @@
     "html",
     "minify"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",  
+  "maintainers": [
+    "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
+    ],
   "license": "MIT",
   "dependencies": {
     "html-minifier": "^0.6.9",
-    "minimatch": "^2.0.1",
+    "minimatch": "^3.0.1",
     "object-assign": "^2.0.0"
   },
   "devDependencies": {
