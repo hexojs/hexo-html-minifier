@@ -1,4 +1,5 @@
 # hexo-html-minifier
+[![Build Status](https://travis-ci.org/hexojs/hexo-html-minifier.svg?branch=master)](https://travis-ci.org/hexojs/hexo-html-minifier)
 
 Minify HTML files with [HTMLMinifier].
 
