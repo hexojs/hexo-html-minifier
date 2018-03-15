@@ -10,7 +10,7 @@
     "lib": "./lib"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6.9.0"
   },
   "repository": "hexojs/hexo-html-minifier",
   "keywords": [
@@ -19,26 +19,27 @@
     "html",
     "minify"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",  
+  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "maintainers": [
     "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
-    ],
+  ],
   "license": "MIT",
   "dependencies": {
-    "html-minifier": "^0.6.9",
-    "minimatch": "^3.0.1",
-    "object-assign": "^2.0.0"
+    "html-minifier": "^3.5.9",
+    "minimatch": "^3.0.4",
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "coveralls": "^2.11.2",
-    "gulp": "^3.8.9",
-    "gulp-istanbul": "^0.5.0",
-    "gulp-jshint": "^1.8.6",
-    "gulp-load-plugins": "^0.8.0",
-    "gulp-mocha": "^2.0.0",
-    "jshint-stylish": "^1.0.0",
-    "mocha": "^2.0.1",
-    "rimraf": "^2.2.8"
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-jshint": "^2.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-mocha": "^5.0.0",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^5.0.1",
+    "rimraf": "^2.6.2"
   }
 }
