@@ -1,7 +1,7 @@
 # hexo-html-minifier
 [![Build Status](https://travis-ci.org/hexojs/hexo-html-minifier.svg?branch=master)](https://travis-ci.org/hexojs/hexo-html-minifier)
 
-Minify HTML files with [HTMLMinifier].
+Minify HTML files with [HTMLMinifier](https://github.com/kangax/html-minifier).
 
 ## Installation
 
@@ -11,13 +11,25 @@ $ npm install hexo-html-minifier --save
 
 ## Options
 
+You can set options of HTMLMinifier in the main `_config.yml` file:
+
 ``` yaml
 html_minifier:
   exclude: 
 ```
 
-- **exclude**: Exclude files
+- **exclude**: Exclude files from minification
 
-See <https://github.com/kangax/html-minifier#options-quick-reference>
+For the other options, see https://github.com/kangax/html-minifier#options-quick-reference
 
-[HTMLMinifier]: https://github.com/kangax/html-minifier
+Here is an example of a more aggressive set of option that will minfy your html further than by default:
+
+``` yaml
+html_minifier:  
+  removeComments: true
+  collapseWhitespace: true
+  collapseBooleanAttributes: true
+  removeEmptyAttributes: true
+  removeScriptTypeAttributes: true
+  removeStyleLinkTypeAttributes: true
+```
