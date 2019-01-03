@@ -1,6 +1,4 @@
-var assign = require('object-assign');
-
-hexo.config.html_minifier = assign({
+hexo.config.html_minifier = Object.assign({
   exclude: []
 }, hexo.config.html_minifier);
 
