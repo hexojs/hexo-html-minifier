@@ -1,3 +1,5 @@
+/* global hexo:true*/
+'use strict';
 hexo.config.html_minifier = Object.assign({
   exclude: []
 }, hexo.config.html_minifier);
