@@ -1,20 +1,22 @@
+'use strict';
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var rirmaf = require('rimraf');
 
 var lib = 'lib/**/*.js';
+var index = 'index.js';
 
-gulp.task('coverage', function(){
+gulp.task('coverage', function() {
   return gulp.src(lib)
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire());
 });
 
-gulp.task('coverage:clean', function(callback){
+gulp.task('coverage:clean', function(callback) {
   rirmaf('coverage', callback);
 });
 
-gulp.task('mocha', ['coverage'], function(){
+gulp.task('mocha', gulp.series('coverage'), function() {
   return gulp.src('test/index.js')
     .pipe($.mocha({
       reporter: 'spec'
@@ -22,16 +24,15 @@ gulp.task('mocha', ['coverage'], function(){
     .pipe($.istanbul.writeReports());
 });
 
-gulp.task('jshint', function(){
-  return gulp.src(lib)
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+gulp.task('eslint', function() {
+  return gulp.src(['**/*.js', '!node_modules/**'])
+    .pipe($.eslint())
+    .pipe($.eslint.formatEach('compact', process.stderr));
 });
 
-gulp.task('watch', function(){
-  gulp.watch(lib, ['mocha', 'jshint']);
-  gulp.watch(['test/index.js'], ['mocha']);
+gulp.task('watch', function() {
+  gulp.watch([lib, index], gulp.series(['mocha', 'eslint']));
+  gulp.watch(['test/index.js'], gulp.series(['mocha']));
 });
 
-gulp.task('test', ['mocha', 'jshint']);
+gulp.task('test', gulp.series(['mocha', 'eslint']));
