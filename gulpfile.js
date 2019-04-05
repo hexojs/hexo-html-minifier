@@ -1,22 +1,22 @@
 'use strict';
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var rirmaf = require('rimraf');
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
+const rirmaf = require('rimraf');
 
-var lib = 'lib/**/*.js';
-var index = 'index.js';
+const lib = 'lib/**/*.js';
+const index = 'index.js';
 
-gulp.task('coverage', function() {
+gulp.task('coverage', () => {
   return gulp.src(lib)
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire());
 });
 
-gulp.task('coverage:clean', function(callback) {
+gulp.task('coverage:clean', callback => {
   rirmaf('coverage', callback);
 });
 
-gulp.task('mocha', gulp.series('coverage'), function() {
+gulp.task('mocha', gulp.series('coverage'), () => {
   return gulp.src('test/index.js')
     .pipe($.mocha({
       reporter: 'spec'
@@ -24,13 +24,13 @@ gulp.task('mocha', gulp.series('coverage'), function() {
     .pipe($.istanbul.writeReports());
 });
 
-gulp.task('eslint', function() {
+gulp.task('eslint', () => {
   return gulp.src(['**/*.js', '!node_modules/**'])
     .pipe($.eslint())
     .pipe($.eslint.formatEach('compact', process.stderr));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch([lib, index], gulp.series(['mocha', 'eslint']));
   gulp.watch(['test/index.js'], gulp.series(['mocha']));
 });
