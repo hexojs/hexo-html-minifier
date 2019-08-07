@@ -1,5 +1,7 @@
 # hexo-html-minifier
+
 [![Build Status](https://travis-ci.org/hexojs/hexo-html-minifier.svg?branch=master)](https://travis-ci.org/hexojs/hexo-html-minifier)
+![NPM version](https://badge.fury.io/js/hexo-html-minifier.svg)](https://www.npmjs.com/package/hexo-html-minifier)
 
 Minify HTML files with [HTMLMinifier](https://github.com/kangax/html-minifier).
 
