@@ -2,7 +2,7 @@
   "name": "hexo-html-minifier",
   "version": "0.1.0",
   "description": "Minify HTML files with HTMLMinifier.",
-  "main": "index",
+  "main": "index.js",
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
@@ -11,6 +11,10 @@
   "directories": {
     "lib": "./lib"
   },
+  "files": [
+    "index.js",
+    "lib/"
+  ],
   "engines": {
     "node": ">= 8.6.0"
   },
