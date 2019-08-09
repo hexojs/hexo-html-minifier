@@ -22,7 +22,7 @@ html_minifier:
 
 - **exclude**: Exclude files from being minified. Support [globbing patterns](https://github.com/micromatch/micromatch#extended-globbing).
 
-By default this plugin uses the following options:
+Default options:
 
 ``` yaml
 html_minifier:  
