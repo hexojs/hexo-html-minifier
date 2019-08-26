@@ -20,18 +20,22 @@ html_minifier:
   exclude: 
 ```
 
-- **exclude**: Exclude files from minification
+- **exclude**: Exclude files from being minified. Support [globbing patterns](https://github.com/micromatch/micromatch#extended-globbing).
 
-For the other options, see https://github.com/kangax/html-minifier#options-quick-reference
-
-Here is an example of a more aggressive set of option that will minfy your html further than by default:
+Default options:
 
 ``` yaml
 html_minifier:  
-  removeComments: true
-  collapseWhitespace: true
   collapseBooleanAttributes: true
+  collapseWhitespace: true
+  # Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
+  ignoreCustomComments: [/^\s*more/]
+  removeComments: true
   removeEmptyAttributes: true
   removeScriptTypeAttributes: true
   removeStyleLinkTypeAttributes: true
+  minifyJS: true
+  minifyCSS: true
 ```
+
+Description of the above options and other available options, see [HTMLMinifier](https://github.com/kangax/html-minifier#options-quick-reference)
