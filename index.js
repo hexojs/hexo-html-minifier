@@ -14,4 +14,4 @@ hexo.config.html_minifier = Object.assign({
   minifyCSS: true
 }, hexo.config.html_minifier);
 
-hexo.extend.filter.register('after_render:html', require('./lib/filter'));
+hexo.extend.filter.register('after_route_render', require('./lib/filter'));
