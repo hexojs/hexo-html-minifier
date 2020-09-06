@@ -1,6 +1,7 @@
 'use strict';
 
 const should = require('chai').should(); // eslint-disable-line
+const { minify } = require('html-minifier');
 
 describe('hexo-html-minifier', () => {
   const ctx = {
@@ -42,5 +43,23 @@ describe('hexo-html-minifier', () => {
     ctx.config.html_minifier.exclude = '**/*.min.html';
     const result = h(input, { path: 'foo/bar.min.html' });
     result.should.eql(input);
+  });
+
+  it('invalid input', () => {
+    const invalid = '<html><>?:"{}|_+</html>';
+    let expected;
+
+    try {
+      minify(invalid);
+    } catch (err) {
+      expected = err;
+    }
+
+    try {
+      h(invalid, { path });
+      should.fail();
+    } catch (err) {
+      err.message.should.eql(`Path: ${path}\n${expected}`);
+    }
   });
 });
