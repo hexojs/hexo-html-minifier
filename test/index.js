@@ -1,7 +1,7 @@
 'use strict';
 
 const should = require('chai').should(); // eslint-disable-line
-const { minify } = require('html-minifier');
+const { minify } = require('html-minifier-terser');
 
 describe('hexo-html-minifier', () => {
   const ctx = {
