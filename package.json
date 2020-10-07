@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^5.1.1",
     "micromatch": "^4.0.2"
   },
   "devDependencies": {
