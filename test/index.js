@@ -1,22 +1,12 @@
 'use strict';
 
 const should = require('chai').should(); // eslint-disable-line
-const { minify } = require('html-minifier');
+const htmlnano = require('htmlnano');
 
 describe('hexo-html-minifier', () => {
   const ctx = {
     config: {
-      html_minifier: {
-        collapseBooleanAttributes: true,
-        collapseWhitespace: true,
-        ignoreCustomComments: [/^\s*more/],
-        removeComments: true,
-        removeEmptyAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        minifyJS: true,
-        minifyCSS: true
-      }
+      html_minifier: {}
     }
   };
   const h = require('../lib/filter').bind(ctx);
@@ -28,38 +18,20 @@ describe('hexo-html-minifier', () => {
     ctx.config = JSON.parse(JSON.stringify(defaultCfg));
   });
 
-  it('default', () => {
-    const result = h(input, { path });
+  it('default', async () => {
+    const result = await h(input, { path });
     result.should.eql('<p>foo</p>');
   });
 
-  it('option', () => {
+  it('option', async () => {
     ctx.config.html_minifier.removeEmptyAttributes = false;
-    const result = h(input, { path });
+    const result = await h(input, { path });
     result.should.eql(input);
   });
 
-  it('exclude', () => {
+  it('exclude', async () => {
     ctx.config.html_minifier.exclude = '**/*.min.html';
-    const result = h(input, { path: 'foo/bar.min.html' });
+    const result = await h(input, { path: 'foo/bar.min.html' });
     result.should.eql(input);
-  });
-
-  it('invalid input', () => {
-    const invalid = '<html><>?:"{}|_+</html>';
-    let expected;
-
-    try {
-      minify(invalid);
-    } catch (err) {
-      expected = err;
-    }
-
-    try {
-      h(invalid, { path });
-      should.fail();
-    } catch (err) {
-      err.message.should.eql(`Path: ${path}\n${expected}`);
-    }
   });
 });
