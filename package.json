@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-cov": "nyc npm run test"
+    "test-cov": "nyc --reporter=text-lcov npm run test"
   },
   "directories": {
     "lib": "./lib"
@@ -16,7 +16,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">= 8.6.0"
+    "node": ">= 12.13"
   },
   "repository": "hexojs/hexo-html-minifier",
   "keywords": [
@@ -25,20 +25,20 @@
     "html",
     "minify"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Tommy Chen <tommy351@gmail.com> (https://zespia.tw)",
   "maintainers": [
-    "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
+    "Abner Chou <hi@abnerchou.me> (https://abnerchou.me)"
   ],
   "license": "MIT",
   "dependencies": {
     "html-minifier": "^4.0.0",
-    "micromatch": "^4.0.2"
+    "micromatch": "^4.0.4"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^7.1.0",
-    "eslint-config-hexo": "^4.0.0",
-    "mocha": "^9.0.3",
-    "nyc": "^15.0.0"
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-hexo": "^4.2.0",
+    "mocha": "^9.1.3",
+    "nyc": "^15.1.0"
   }
 }
