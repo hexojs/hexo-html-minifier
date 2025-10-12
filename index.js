@@ -4,14 +4,11 @@ hexo.config.html_minifier = Object.assign({
   exclude: [],
   collapseBooleanAttributes: true,
   collapseWhitespace: true,
-  // Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
-  ignoreCustomComments: [/^\s*more/],
-  removeComments: true,
+  removeComments: false,
   removeEmptyAttributes: true,
-  removeScriptTypeAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  minifyJS: true,
-  minifyCSS: true
+  removeAttributeQuotes: true,
+  minifyJs: true,
+  minifyCss: true
 }, hexo.config.html_minifier);
 
 hexo.extend.filter.register('after_render:html', require('./lib/filter'));
