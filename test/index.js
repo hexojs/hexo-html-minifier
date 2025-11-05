@@ -1,8 +1,6 @@
 'use strict';
 
 const should = require('chai').should(); // eslint-disable-line
-const htmlnano = require('htmlnano');
-
 describe('hexo-html-minifier', () => {
   const ctx = {
     config: {
