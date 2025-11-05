@@ -34,8 +34,8 @@ html_minifier:
   removeEmptyAttributes: true
   removeRedundantAttributes: true
   removeAttributeQuotes: true
-  minifyJS: true
-  minifyCSS: true
+  minifyJs: true
+  minifyCss: true
 ```
 
 - **ignoreCustomComments**: Array of regex'es that allow to ignore certain comments, when matched. Need to prepend [`!!js/regexp`](https://github.com/nodeca/js-yaml#supported-yaml-types) to support regex.
