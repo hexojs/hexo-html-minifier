@@ -7,9 +7,11 @@ describe('hexo-html-minifier', () => {
   const ctx = {
     config: {
       html_minifier: {
+        exclude: [],
         collapseBooleanAttributes: true,
         collapseWhitespace: true,
-        removeComments: false,
+        ignoreCustomComments: [/^\s*more/],
+        removeComments: true,
         removeEmptyAttributes: true,
         removeRedundantAttributes: true,
         removeAttributeQuotes: true,
@@ -19,12 +21,12 @@ describe('hexo-html-minifier', () => {
     }
   };
   const h = require('../lib/filter').bind(ctx);
-  const defaultCfg = JSON.parse(JSON.stringify(ctx.config));
+  const defaultCfg = {...ctx.config.html_minifier};
   const input = '<p id="">foo</p>';
   const path = 'index.html';
 
   beforeEach(() => {
-    ctx.config = JSON.parse(JSON.stringify(defaultCfg));
+    ctx.config.html_minifier = {...defaultCfg};
   });
 
   it('default', async () => {
@@ -51,5 +53,11 @@ describe('hexo-html-minifier', () => {
     const result = await h(invalid, { path });
     // htmlnano processes the content as-is
     result.should.eql(invalid);
+  });
+
+  it('ignoreCustomComments', async () => {
+    const content = '<!-- more -->\n<p>Content</p>';
+    const result = await h(content, { path });
+    result.should.include('<!-- more -->');
   });
 });
