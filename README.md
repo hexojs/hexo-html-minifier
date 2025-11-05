@@ -17,7 +17,7 @@ You can set options of HTMLMinifier in the main `_config.yml` file:
 
 ``` yaml
 html_minifier:
-  exclude: 
+  exclude:
 ```
 
 - **exclude**: Exclude files from being minified. Support [globbing patterns](https://github.com/micromatch/micromatch#extended-globbing).
@@ -25,11 +25,12 @@ html_minifier:
 Default options:
 
 ``` yaml
-html_minifier:  
+html_minifier:
   collapseBooleanAttributes: true
   collapseWhitespace: true
   removeComments: false
   removeEmptyAttributes: true
+  removeRedundantAttributes: true
   removeAttributeQuotes: true
   minifyJS: true
   minifyCSS: true

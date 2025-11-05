@@ -11,6 +11,7 @@ describe('hexo-html-minifier', () => {
         collapseWhitespace: true,
         removeComments: false,
         removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
         removeAttributeQuotes: true,
         minifyJs: true,
         minifyCss: true

@@ -6,6 +6,7 @@ hexo.config.html_minifier = Object.assign({
   collapseWhitespace: true,
   removeComments: false,
   removeEmptyAttributes: true,
+  removeRedundantAttributes: true,
   removeAttributeQuotes: true,
   minifyJs: true,
   minifyCss: true
