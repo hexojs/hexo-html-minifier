@@ -17,7 +17,7 @@ You can set options of HTMLMinifier in the main `_config.yml` file:
 
 ``` yaml
 html_minifier:
-  exclude: 
+  exclude:
 ```
 
 - **exclude**: Exclude files from being minified. Support [globbing patterns](https://github.com/micromatch/micromatch#extended-globbing).
@@ -25,17 +25,17 @@ html_minifier:
 Default options:
 
 ``` yaml
-html_minifier:  
+html_minifier:
   collapseBooleanAttributes: true
   collapseWhitespace: true
   # Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
   ignoreCustomComments: [ !!js/regexp /^\s*more/]
   removeComments: true
   removeEmptyAttributes: true
-  removeScriptTypeAttributes: true
-  removeStyleLinkTypeAttributes: true
-  minifyJS: true
-  minifyCSS: true
+  removeRedundantAttributes: true
+  removeAttributeQuotes: true
+  minifyJs: true
+  minifyCss: true
 ```
 
 - **ignoreCustomComments**: Array of regex'es that allow to ignore certain comments, when matched. Need to prepend [`!!js/regexp`](https://github.com/nodeca/js-yaml#supported-yaml-types) to support regex.
