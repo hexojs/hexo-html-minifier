@@ -1,7 +1,7 @@
 'use strict';
 
-const should = require('chai').should(); // eslint-disable-line
-const { minify } = require('html-minifier');
+const should = require('chai').should();
+const normalizeOptions = require('../lib/options');
 
 describe('hexo-html-minifier', () => {
   const ctx = {
@@ -12,54 +12,71 @@ describe('hexo-html-minifier', () => {
         ignoreCustomComments: [/^\s*more/],
         removeComments: true,
         removeEmptyAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
+        removeDefaultTypeAttributes: true,
         minifyJS: true,
         minifyCSS: true
       }
     }
   };
   const h = require('../lib/filter').bind(ctx);
-  const defaultCfg = JSON.parse(JSON.stringify(ctx.config));
+  const defaultCfg = { ...ctx.config.html_minifier };
   const input = '<p id="">foo</p>';
   const path = 'index.html';
 
   beforeEach(() => {
-    ctx.config = JSON.parse(JSON.stringify(defaultCfg));
+    ctx.config.html_minifier = { ...defaultCfg };
   });
 
-  it('default', () => {
-    const result = h(input, { path });
+  it('default', async () => {
+    const result = await h(input, { path });
     result.should.eql('<p>foo</p>');
   });
 
-  it('option', () => {
+  it('option', async () => {
     ctx.config.html_minifier.removeEmptyAttributes = false;
-    const result = h(input, { path });
+    const result = await h(input, { path });
     result.should.eql(input);
   });
 
-  it('exclude', () => {
+  it('exclude', async () => {
     ctx.config.html_minifier.exclude = '**/*.min.html';
-    const result = h(input, { path: 'foo/bar.min.html' });
+    const result = await h(input, { path: 'foo/bar.min.html' });
     result.should.eql(input);
   });
 
-  it('invalid input', () => {
+  it('preserves the Hexo excerpt comment', async () => {
+    const result = await h('<!-- more --><!-- remove --><p>Content</p>', { path });
+    result.should.eql('<!-- more --><p>Content</p>');
+  });
+
+  it('invalid input', async () => {
     const invalid = '<html><>?:"{}|_+</html>';
-    let expected;
+    let error;
 
     try {
-      minify(invalid);
+      await h(invalid, { path });
     } catch (err) {
-      expected = err;
+      error = err;
     }
 
-    try {
-      h(invalid, { path });
-      should.fail();
-    } catch (err) {
-      err.message.should.eql(`Path: ${path}\n${expected}`);
-    }
+    should.exist(error);
+    error.message.should.match(/^Path: index\.html\n/);
+  });
+
+  it('maps matching legacy type attribute options', () => {
+    const options = normalizeOptions({
+      removeScriptTypeAttributes: false,
+      removeStyleLinkTypeAttributes: false
+    });
+
+    options.should.eql({ removeDefaultTypeAttributes: false });
+  });
+
+  it('preserves type attributes when legacy options differ', () => {
+    const warnings = [];
+    const options = normalizeOptions({ removeScriptTypeAttributes: false }, message => warnings.push(message));
+
+    options.should.eql({ removeDefaultTypeAttributes: false });
+    warnings.should.have.lengthOf(1);
   });
 });
