@@ -1,6 +1,6 @@
 {
   "name": "hexo-html-minifier",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Minify HTML files with HTML Minifier Next.",
   "main": "index.js",
   "scripts": {

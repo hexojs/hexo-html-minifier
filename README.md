@@ -3,9 +3,7 @@
 [![Build Status](https://github.com/hexojs/hexo-html-minifier/workflows/Tester/badge.svg)](https://github.com/hexojs/hexo-html-minifier/actions?query=workflow%3ATester)
 [![NPM version](https://badge.fury.io/js/hexo-html-minifier.svg)](https://www.npmjs.com/package/hexo-html-minifier)
 
-Minify HTML files with [HTML Minifier Next](https://github.com/j9t/html-minifier-next), the maintained successor to HTMLMinifier.
-
-Version 2 requires Node.js 22.13 or newer.
+Minify HTML files with [HTML Minifier Next](https://github.com/j9t/html-minifier-next), the maintained successor to HTMLMinifier. Requires Node.js 22.13 or newer.
 
 ## Installation
 
@@ -43,8 +41,6 @@ html_minifier:
 
 Description of the above options and other available options, see [HTML Minifier Next](https://github.com/j9t/html-minifier-next#options-quick-reference).
 
-## Migrating from version 1
-
-Version 2 replaces the unmaintained `html-minifier` package with HTML Minifier Next and raises the minimum Node.js version to 22.13.
+## Legacy options
 
 HTML Minifier Next combines `removeScriptTypeAttributes` and `removeStyleLinkTypeAttributes` into `removeDefaultTypeAttributes`. Matching legacy values are converted automatically. If the legacy values differ, both kinds of `type` attribute are preserved and a warning asks you to choose the combined option explicitly.
