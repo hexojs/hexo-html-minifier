@@ -1,13 +1,15 @@
 'use strict';
 
 const should = require('chai').should(); // eslint-disable-line
+const normalizeOptions = require('../lib/options');
+
 describe('hexo-html-minifier', () => {
   const ctx = {
     config: {
       html_minifier: {
         exclude: [],
         collapseBooleanAttributes: true,
-        collapseWhitespace: true,
+        collapseWhitespace: 'conservative',
         ignoreCustomComments: [/^\s*more/],
         removeComments: true,
         removeEmptyAttributes: true,
@@ -54,8 +56,41 @@ describe('hexo-html-minifier', () => {
   });
 
   it('ignoreCustomComments', async () => {
-    const content = '<!-- more -->\n<p>Content</p>';
+    ctx.config.html_minifier.ignoreCustomComments = [/^\s*more/, /keep/g];
+    const content = '<!-- more --><!-- keep --><!-- keep --><!-- remove --><p>Content</p>';
     const result = await h(content, { path });
     result.should.include('<!-- more -->');
+    result.match(/<!-- keep -->/g).should.have.length(2);
+    result.should.not.include('<!-- remove -->');
+  });
+
+  it('does not mutate config', async () => {
+    const options = ctx.config.html_minifier;
+
+    await h(input, { path });
+
+    ctx.config.html_minifier.should.equal(options);
+    options.should.have.property('exclude');
+    options.should.have.property('ignoreCustomComments');
+    options.should.not.have.property('skipConfigLoading');
+  });
+
+  it('normalizes legacy option names', () => {
+    const options = normalizeOptions({
+      minifyCSS: false,
+      minifyJS: false,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true
+    });
+
+    options.should.include({
+      minifyCss: false,
+      minifyJs: false,
+      removeRedundantAttributes: true
+    });
+    options.should.not.have.property('minifyCSS');
+    options.should.not.have.property('minifyJS');
+    options.should.not.have.property('removeScriptTypeAttributes');
+    options.should.not.have.property('removeStyleLinkTypeAttributes');
   });
 });

@@ -16,7 +16,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">= 12.13"
+    "node": ">=22.12"
   },
   "repository": "hexojs/hexo-html-minifier",
   "keywords": [
@@ -32,10 +32,10 @@
   "license": "MIT",
   "dependencies": {
     "cssnano": "^7.1.1",
-    "htmlnano": "^2.1.5",
+    "htmlnano": "^3.4.0",
     "micromatch": "^4.0.4",
-    "postcss": "^8.5.6",
-    "svgo": "^3.3.2",
+    "postcss": "^8.5.26",
+    "svgo": "^4.0.0",
     "terser": "^5.44.0"
   },
   "devDependencies": {
