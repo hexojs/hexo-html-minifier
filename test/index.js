@@ -56,11 +56,11 @@ describe('hexo-html-minifier', () => {
   });
 
   it('ignoreCustomComments', async () => {
-    ctx.config.html_minifier.ignoreCustomComments = [/^\s*more/, /keep/g];
-    const content = '<!-- more --><!-- keep --><!-- keep --><!-- remove --><p>Content</p>';
+    ctx.config.html_minifier.ignoreCustomComments = [/^\s*more/, /^\s*keep\s*$/g];
+    const content = '<!-- more --><!-- keep --><!-- remove --><p>Content</p><!-- keep --!>';
     const result = await h(content, { path });
     result.should.include('<!-- more -->');
-    result.match(/<!-- keep -->/g).should.have.length(2);
+    result.match(/<!-- keep/g).should.have.length(2);
     result.should.not.include('<!-- remove -->');
   });
 
