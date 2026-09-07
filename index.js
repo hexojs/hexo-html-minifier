@@ -1,5 +1,10 @@
 /* global hexo:true*/
 'use strict';
+
+const normalizeOptions = require('./lib/options');
+const warn = hexo.log?.warn?.bind(hexo.log);
+const options = normalizeOptions(hexo.config.html_minifier, warn);
+
 hexo.config.html_minifier = Object.assign({
   exclude: [],
   collapseBooleanAttributes: true,
@@ -8,10 +13,9 @@ hexo.config.html_minifier = Object.assign({
   ignoreCustomComments: [/^\s*more/],
   removeComments: true,
   removeEmptyAttributes: true,
-  removeScriptTypeAttributes: true,
-  removeStyleLinkTypeAttributes: true,
+  removeDefaultTypeAttributes: true,
   minifyJS: true,
   minifyCSS: true
-}, hexo.config.html_minifier);
+}, options);
 
 hexo.extend.filter.register('after_render:html', require('./lib/filter'));
