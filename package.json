@@ -1,7 +1,7 @@
 {
   "name": "hexo-html-minifier",
   "version": "1.0.0",
-  "description": "Minify HTML files with HTMLMinifier.",
+  "description": "Minify HTML files with htmlnano.",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint .",
@@ -16,7 +16,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">= 12.13"
+    "node": ">=22.12"
   },
   "repository": "hexojs/hexo-html-minifier",
   "keywords": [
@@ -31,8 +31,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "html-minifier": "^4.0.0",
-    "micromatch": "^4.0.4"
+    "cssnano": "^7.1.1",
+    "htmlnano": "^3.4.0",
+    "micromatch": "^4.0.4",
+    "postcss": "^8.5.26",
+    "svgo": "^4.0.0",
+    "terser": "^5.44.0"
   },
   "devDependencies": {
     "chai": "^6.0.1",
